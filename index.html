@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+</head>
+<body>
+    <script>
+
+        function getComputerChoice() {
+            let x = Math.random();
+
+            if (x >= 0.66) {
+                return "rock"
+            } else if (x >= 0.33) {
+                return "paper"
+            } else {
+                return "scissor"
+            }
+        }
+
+        function getHumanChoice () {
+            return prompt("Choose rock, paper or scissor").toLowerCase();
+        }
+
+        function playGame(rounds) {
+
+            var humanScore = 0;
+            var computerScore = 0;
+
+            for (let i = 0; i < rounds; i++) {
+                const  computerChoice = getComputerChoice();
+                const  humanChoice = getHumanChoice();
+
+                function playRound (humanChoice, computerChoice) {
+                    switch (humanChoice) {
+                        case "rock":
+                        switch (computerChoice) {
+                            case "rock":
+                            return "You Drew! "+ humanChoice + " is same as " + computerChoice +"."
+                            break;
+
+                            case "paper":
+                            computerScore++;
+                            return "You lose! " + humanChoice + " loses to " + computerChoice +"."
+                            break;
+
+                            case "scissor":
+                            humanScore++;
+                            return "You Win! " + humanChoice + " beats " + computerChoice +"."
+                            break;
+                        }
+
+                        case "paper":
+                        switch (computerChoice) {
+                            case "rock":
+                            humanScore++;
+                            return "You Win!" + humanChoice + " beats " + computerChoice +"."
+                            break;
+
+                            case "paper":
+                            return "You Drew! " + humanChoice + " is same as " + computerChoice +"."
+                            break;
+
+                            case "scissor":
+                            computerScore ++;
+                            return "You Lose! " + humanChoice + " loses to " + computerChoice +"."
+                            break;
+                        }
+
+                        case "scissor":
+                        switch (computerChoice) {
+                            case "rock":
+                            computerScore++;
+                            return "You Lose! " + humanChoice + " loses to " + computerChoice +"."
+                            break;
+
+                            case "paper":
+                            humanScore++;
+                            return "You Win! " + humanChoice + " beats " + computerChoice +"."
+                            break;
+
+                            case "scissor":
+                            return "You Draw! " + humanChoice + " is same as " + computerChoice +"."
+                            break;
+                        }
+                    }
+                }
+                
+                playRound(humanChoice, computerChoice);
+            }
+            
+            if (humanScore == computerScore) {
+                return "You Drew. Final score " + humanScore +":"+computerScore 
+            } else if (humanScore > computerScore) {
+                return "You Won. Final score " + humanScore +":"+computerScore 
+            } else {
+                return "You Lose. Final score " + humanScore +":"+computerScore 
+            }
+
+        }
+
+
+        let a = playGame(5)
+    
+        console.log(a)
+
+    </script>
+</body>
+</html>
